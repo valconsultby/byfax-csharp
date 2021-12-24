@@ -1,0 +1,21 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ApiSampleFramework.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ApiSampleFramework_cover_ApiServiceCover" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://api.byfax.biz/soap/1.1/cover</Value>
+    </Setting>
+    <Setting Name="ApiSampleFramework_document_ApiServiceDocument" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://api.byfax.biz/soap/1.1/document</Value>
+    </Setting>
+    <Setting Name="ApiSampleFramework_faxout_ApiServiceFaxout" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://api.byfax.biz/soap/1.1/faxout</Value>
+    </Setting>
+    <Setting Name="ApiSampleFramework_inventory_ApiServiceFxiInventory" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://api.byfax.biz/soap/1.1/faxin/inventory</Value>
+    </Setting>
+    <Setting Name="ApiSampleFramework_message_ApiServiceFxiMessage" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://api.byfax.biz/soap/1.1/faxin/message</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

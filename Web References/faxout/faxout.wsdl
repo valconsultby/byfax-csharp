@@ -1,0 +1,904 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="urn:ApiServiceFaxout" xmlns:s="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:ApiServiceFaxout" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema targetNamespace="urn:ApiServiceFaxout">
+      <s:complexType name="UsernameToken">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Username" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Password" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="StateCodes">
+        <s:restriction base="s:string">
+          <s:enumeration value="SUCCESS" />
+          <s:enumeration value="API_FUNCTION_MISSING" />
+          <s:enumeration value="API_FUNCTION_UNKNOWN" />
+          <s:enumeration value="API_FUNCTION_ACCESS_DENIED" />
+          <s:enumeration value="API_AGENT_MISSING" />
+          <s:enumeration value="API_AGENT_NOT_FOUND" />
+          <s:enumeration value="API_AGENT_DEACTIVATED" />
+          <s:enumeration value="API_AGENT_KEY_NOT_MATCH" />
+          <s:enumeration value="API_CUSTOMER_MISSING" />
+          <s:enumeration value="API_CUSTOMER_NOT_FOUND" />
+          <s:enumeration value="API_CUSTOMER_DEACTIVATED" />
+          <s:enumeration value="API_CUSTOMER_KEY_NOT_MATCH" />
+          <s:enumeration value="API_CUSTOMER_FEATURE_ACCESS_DENIED" />
+          <s:enumeration value="API_KEY_MISSING" />
+          <s:enumeration value="API_KEY_NOT_FOUND" />
+          <s:enumeration value="API_KEY_DEACTIVATED" />
+          <s:enumeration value="API_KEY_SECRET_NOT_MATCH" />
+          <s:enumeration value="API_REQUEST_INCOMPLETE" />
+          <s:enumeration value="API_REQUEST_FAILURE" />
+          <s:enumeration value="API_REQUEST_VALIDATE" />
+          <s:enumeration value="FILE_NOT_FOUND" />
+          <s:enumeration value="FILE_DELETED" />
+          <s:enumeration value="FILE_ACCESS_DENIED" />
+          <s:enumeration value="FILE_STORAGE_MISSING" />
+          <s:enumeration value="FILE_STORAGE_SIZE_MISMATCH" />
+          <s:enumeration value="FILE_STORAGE_READ_ERROR" />
+          <s:enumeration value="FILE_EXISTS" />
+          <s:enumeration value="CUSTOMER_DELETED" />
+          <s:enumeration value="CUSTOMER_NOT_CONFIRMED" />
+          <s:enumeration value="CUSTOMER_BLOCKED" />
+          <s:enumeration value="CUSTOMER_INACTIVE" />
+          <s:enumeration value="CUSTOMER_WRONG_PASSWORD" />
+          <s:enumeration value="CUSTOMER_PASSWORD_NOT_MATCH" />
+          <s:enumeration value="CUSTOMER_CURRENT_PASSWORD_NOT_MATCH" />
+          <s:enumeration value="CUSTOMER_EMAIL_IN_USE" />
+          <s:enumeration value="CUSTOMER_SOCIAL_IN_USE" />
+          <s:enumeration value="FILE_REFERENCE_DUPLICATE" />
+          <s:enumeration value="FILE_STORAGE_COPY" />
+          <s:enumeration value="FILE_INTEGRITY_FAILURE" />
+          <s:enumeration value="FILE_FORMAT_UNSUPPORTED" />
+          <s:enumeration value="FILE_FORMAT_EXCEPTION" />
+          <s:enumeration value="FILE_FORMAT_UNKNOWN" />
+          <s:enumeration value="FILE_DOWNLOAD_ERROR" />
+          <s:enumeration value="FILE_VALIDATE_ERROR" />
+          <s:enumeration value="FILE_OPEN_ERROR" />
+          <s:enumeration value="FILE_THUMB_ERROR" />
+          <s:enumeration value="DATABASE_RECORD_SAVE" />
+          <s:enumeration value="DATABASE_QUERY_EXECUTE" />
+          <s:enumeration value="DATABASE_QUERY_RESULT_SAVE" />
+          <s:enumeration value="NUMBER_COUNTRY_UNKNOWN" />
+          <s:enumeration value="NUMBER_NO_DIALING_RULE" />
+          <s:enumeration value="NUMBER_NO_PRICE_RULE" />
+          <s:enumeration value="COUNTRY_WRONG_ISO2" />
+          <s:enumeration value="COUNTRY_NOT_SUPPORTED" />
+          <s:enumeration value="COUNTRY_NO_ROUTE" />
+          <s:enumeration value="EMPTY_RESULT" />
+          <s:enumeration value="NUMBER_BLOCKED" />
+          <s:enumeration value="NUMBER_UNOBTAINABLE" />
+          <s:enumeration value="UNALLOCATED_NUMBER" />
+          <s:enumeration value="INVALID_NUMBER" />
+          <s:enumeration value="NUMBER_UNSUPPORTED" />
+          <s:enumeration value="CALL_ABORTED" />
+          <s:enumeration value="CALL_REJECTED" />
+          <s:enumeration value="CALL_PLACE_ERROR" />
+          <s:enumeration value="CALL_CREATE_ERROR" />
+          <s:enumeration value="LINE_ATTACH" />
+          <s:enumeration value="LINE_RESET" />
+          <s:enumeration value="LINE_CAP_FAX" />
+          <s:enumeration value="LINE_CAP_VOICE" />
+          <s:enumeration value="LINE_SET_TSID" />
+          <s:enumeration value="LINE_UNAUTHORIZED" />
+          <s:enumeration value="LINE_REQUEST_TIMEOUT" />
+          <s:enumeration value="DESTINATION_UNREACHIBLE" />
+          <s:enumeration value="DIALING_ERROR" />
+          <s:enumeration value="GATEWAY_TIMEOUT" />
+          <s:enumeration value="ISDN_NETWORK_FAILURE" />
+          <s:enumeration value="BUSY" />
+          <s:enumeration value="NO_ANSWER" />
+          <s:enumeration value="NO_DIAL_TONE" />
+          <s:enumeration value="RECEIVER_INCOMPATIBLE" />
+          <s:enumeration value="TEMPORARILY_UNAVAILABLE" />
+          <s:enumeration value="TRANSMISSION_ABORTED" />
+          <s:enumeration value="TRANSMISSION_EARLY_HANGUP" />
+          <s:enumeration value="TRANSMISSION_ERROR" />
+          <s:enumeration value="NEGOTIATION_FAILED" />
+          <s:enumeration value="NOT_FAX_MACHINE" />
+          <s:enumeration value="VOICE_ANSWER" />
+          <s:enumeration value="DELIVERY_FAILURE" />
+          <s:enumeration value="MESSAGE_REFERENCE_DUPLICATE" />
+          <s:enumeration value="FAXJOB_NOT_FOUND" />
+          <s:enumeration value="FAXJOB_NOT_FAILED" />
+          <s:enumeration value="FAXJOB_NOT_WAITING" />
+          <s:enumeration value="FAXTRANSPORT_NOT_FOUND" />
+          <s:enumeration value="FAXTRANSPORT_NOT_WAITING" />
+          <s:enumeration value="CONTAINER_EXISTS" />
+          <s:enumeration value="CONTAINER_NOT_FOUND" />
+          <s:enumeration value="CONTAINER_DELETED" />
+          <s:enumeration value="CONTAINER_ACCESS_DENIED" />
+          <s:enumeration value="CONTAINER_DOCUMENT_DUPLICATE" />
+          <s:enumeration value="CONTAINER_PAGES_LIMIT_EXCEEDED" />
+          <s:enumeration value="COVER_TEMPLATE_NOT_FOUND" />
+          <s:enumeration value="COVER_TEMPLATE_DELETED" />
+          <s:enumeration value="COVER_TEMPLATE_ACCESS_DENIED" />
+          <s:enumeration value="FAXPRICE_NOT_FOUND" />
+          <s:enumeration value="RESUBMIT_FAILED" />
+          <s:enumeration value="DID_NUMBER_LOCKED" />
+          <s:enumeration value="DID_SOURCE_NOT_FAXIN" />
+          <s:enumeration value="DID_CUSTOMER_NOT_MATCH" />
+          <s:enumeration value="DID_WRONG_FAXIN_STATE" />
+          <s:enumeration value="DID_GROUP_NOT_CONNECTED" />
+          <s:enumeration value="DID_EXTEND_TOO_EARLY" />
+          <s:enumeration value="DID_ORDER_PENDING_ACTIVATION" />
+          <s:enumeration value="FILE_PREVIEW_NOT_READY" />
+          <s:enumeration value="FILE_CONVERTION_FAILED" />
+          <s:enumeration value="FILE_PAGES_LIMIT_EXCEEDED" />
+          <s:enumeration value="COMMON_EMAIL_SEND_ERROR" />
+          <s:enumeration value="QUEUE_TASK_ABORTED" />
+          <s:enumeration value="FILE_TIFF_DEPTH_VALIDATION" />
+          <s:enumeration value="FILE_TIFF_FORMAT_VALIDATION" />
+          <s:enumeration value="FILE_TIFF_QUALITY_VALIDATION" />
+          <s:enumeration value="FILE_TIFF_PAGES_VALIDATION" />
+          <s:enumeration value="FILE_TIFF_WIDTH_VALIDATION" />
+          <s:enumeration value="FILE_TIFF_HEIGHT_VALIDATION" />
+          <s:enumeration value="NUMBER_ADDRESS_NOT_REQUIRED" />
+          <s:enumeration value="NUMBER_OUT_OF_STOCK" />
+          <s:enumeration value="NUMBER_GROUP_NOT_AVAILABLE" />
+          <s:enumeration value="NUMBER_ORDER_FAILURE" />
+          <s:enumeration value="NUMBER_SETUP_FAILURE" />
+          <s:enumeration value="NUMBER_ADDRESS_FAILURE" />
+          <s:enumeration value="NUMBER_PROVIDER_NOT_RECOGNIZED" />
+          <s:enumeration value="SESSION_TOKEN_MISMATCH" />
+          <s:enumeration value="SESSION_NOT_FOUND" />
+          <s:enumeration value="SESSION_EXPIRED" />
+          <s:enumeration value="CONFIRM_TOKEN_NOT_FOUND" />
+          <s:enumeration value="CONFIRM_TOKEN_TYPE_MISMATCH" />
+          <s:enumeration value="CONFIRM_TOKEN_SOURCE_MISMATCH" />
+          <s:enumeration value="CONFIRM_TOKEN_USER_MISMATCH" />
+          <s:enumeration value="CONFIRM_TOKEN_EXPIRED" />
+          <s:enumeration value="CONFIRM_TOKEN_VALIDATED" />
+          <s:enumeration value="CONFIRM_TOKEN_INVALIDATED" />
+          <s:enumeration value="CONFIRM_TOKEN_CLOSED" />
+          <s:enumeration value="SEND_SMS_FREQUENCY_EXCEEDED" />
+          <s:enumeration value="CONTACT_GROUP_IN_USE" />
+          <s:enumeration value="CONTACT_GROUP_NOT_FOUND" />
+          <s:enumeration value="CONTACT_GROUP_ACCESS_DENIED" />
+          <s:enumeration value="CONTACT_ITEM_NOT_FOUND" />
+          <s:enumeration value="CONTACT_ITEM_ACCESS_DENIED" />
+          <s:enumeration value="CONTACT_NUMBER_IN_USE" />
+          <s:enumeration value="NUMBER_ITEM_EXISTS" />
+          <s:enumeration value="STORAGE_ALREADY_CONNECTED" />
+          <s:enumeration value="STORAGE_REVOKE_FAILURE" />
+          <s:enumeration value="STORAGE_NOT_CONNECTED" />
+          <s:enumeration value="STORAGE_NOT_FOUND" />
+          <s:enumeration value="INSUFFICIENT_FUNDS" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="StateContainer">
+        <s:restriction base="s:string">
+          <s:enumeration value="UNKNOWN" />
+          <s:enumeration value="PENDING" />
+          <s:enumeration value="PROCESSING" />
+          <s:enumeration value="READY" />
+          <s:enumeration value="UNPAID" />
+          <s:enumeration value="DELAYED" />
+          <s:enumeration value="QUEUED" />
+          <s:enumeration value="DELIVERING" />
+          <s:enumeration value="PAUSING" />
+          <s:enumeration value="RESUMING" />
+          <s:enumeration value="PAUSED" />
+          <s:enumeration value="ABORTING" />
+          <s:enumeration value="ABORTED" />
+          <s:enumeration value="CANCELLING" />
+          <s:enumeration value="CANCELLED" />
+          <s:enumeration value="FAILED" />
+          <s:enumeration value="DONE" />
+          <s:enumeration value="DELETED" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="StateRecipient">
+        <s:restriction base="s:string">
+          <s:enumeration value="UNKNOWN" />
+          <s:enumeration value="PENDING" />
+          <s:enumeration value="PREPARING" />
+          <s:enumeration value="READY" />
+          <s:enumeration value="SUBMITTING" />
+          <s:enumeration value="SUBMITTED" />
+          <s:enumeration value="DELIVERING" />
+          <s:enumeration value="PAUSING" />
+          <s:enumeration value="RESUMING" />
+          <s:enumeration value="PAUSED" />
+          <s:enumeration value="ABORTING" />
+          <s:enumeration value="ABORTED" />
+          <s:enumeration value="CANCELLING" />
+          <s:enumeration value="CANCELLED" />
+          <s:enumeration value="SUCCESS" />
+          <s:enumeration value="FAILED" />
+          <s:enumeration value="DELETED" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="FaxQuality">
+        <s:restriction base="s:string">
+          <s:enumeration value="UNKNOWN" />
+          <s:enumeration value="BASIC" />
+          <s:enumeration value="STANDARD" />
+          <s:enumeration value="FINE" />
+          <s:enumeration value="SUPER_FINE" />
+          <s:enumeration value="ULTRA_FINE" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="FaxMode">
+        <s:restriction base="s:string">
+          <s:enumeration value="UNKNOWN" />
+          <s:enumeration value="TEXT" />
+          <s:enumeration value="PHOTO" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="FaxContact">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Company" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Number" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Timezone" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="FaxContactArray">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:attribute wsdl:arrayType="tns:FaxContact[]" ref="soapenc:arrayType" />
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="FaxRecipient">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:FaxContact">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="messageRef" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="sendRef" nillable="true" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Header" nillable="true" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Subject" nillable="true" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Greeting" nillable="true" type="tns:FaxGreeting" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="FaxRecipientArray">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:attribute wsdl:arrayType="tns:FaxRecipient[]" ref="soapenc:arrayType" />
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="FaxFile">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="fileName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fileMime" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fileSize" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="fileCheck" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fileData" type="s:base64Binary" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="FaxFileArray">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:attribute wsdl:arrayType="tns:FaxFile[]" ref="soapenc:arrayType" />
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="FaxGreeting">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="greetingRef" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="languageISO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="greetingTitle" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="greetingFile" type="tns:FaxFile" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="FaxGreetingArray">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:attribute wsdl:arrayType="tns:FaxGreeting[]" ref="soapenc:arrayType" />
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="FaxDocument">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="documentRef" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="documentFile" type="tns:FaxFile" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="FaxDocumentArray">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:attribute wsdl:arrayType="tns:FaxDocument[]" ref="soapenc:arrayType" />
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="FaxReportUpload">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ApiResponse">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="fileRef" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="FaxReportUploadArray">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:attribute wsdl:arrayType="tns:FaxReportUpload[]" ref="soapenc:arrayType" />
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="FaxReportRecipient">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ApiResponse">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="messageRef" nillable="true" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="recipientNumber" nillable="true" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="FaxReportRecipientArray">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:attribute wsdl:arrayType="tns:FaxReportRecipient[]" ref="soapenc:arrayType" />
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="FaxReportBroadcast">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ApiResponse">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="broadcastRef" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="jobState" type="tns:StateContainer" />
+              <s:element minOccurs="0" maxOccurs="1" name="jobStateEx" type="tns:StateCodes" />
+              <s:element minOccurs="0" maxOccurs="1" name="jobStateExMessage" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="jobCreated" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="jobDelivered" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="recipientCount" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="price" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="cost" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="currency" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="FaxReportBroadcastArray">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:attribute wsdl:arrayType="tns:FaxReportBroadcast[]" ref="soapenc:arrayType" />
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="FaxReportMessage">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ApiResponse">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="broadcastRef" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="sendRef" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="messageRef" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="jobState" type="tns:StateRecipient" />
+              <s:element minOccurs="0" maxOccurs="1" name="jobStateEx" type="tns:StateCodes" />
+              <s:element minOccurs="0" maxOccurs="1" name="jobStateExMessage" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="localID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="remoteID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="callStarted" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="faxStarted" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="callEnded" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="callDuration" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="lineDuration" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="faxDuration" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="attempt" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="recipientNumber" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="pagesTotal" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="pagesSent" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="faxSpeed" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="cost" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="currency" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="FaxReportMessageArray">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:attribute wsdl:arrayType="tns:FaxReportMessage[]" ref="soapenc:arrayType" />
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="FaxReportProcess">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ApiResponse">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="broadcastRef" nillable="true" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="sendRef" nillable="true" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="messageRef" nillable="true" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="jobState" type="tns:StateRecipient" />
+              <s:element minOccurs="0" maxOccurs="1" name="jobAttempt" nillable="true" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="recipientNumber" nillable="true" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="FaxReportProcessArray">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:attribute wsdl:arrayType="tns:FaxReportProcess[]" ref="soapenc:arrayType" />
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ListPagination">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="pageNumber" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="pageSize" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ApiRequestFaxjobProcess">
+        <s:sequence>
+          <s:element minOccurs="0" name="broadcastRefs" nillable="true" type="tns:stringArray" />
+          <s:element minOccurs="0" name="sendRefs" nillable="true" type="tns:stringArray" />
+          <s:element minOccurs="0" name="messageRefs" nillable="true" type="tns:stringArray" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ApiRequestFaxjobSubmit">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="broadcastRef" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sendRef" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Header" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Subject" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Priority" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="busyRetry" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="sendAt" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="sendQuality" type="tns:FaxQuality" />
+          <s:element minOccurs="1" maxOccurs="1" name="sendMode" type="tns:FaxMode" />
+          <s:element minOccurs="1" maxOccurs="1" name="Sender" type="tns:FaxContact" />
+          <s:element minOccurs="1" maxOccurs="1" name="Recipients" type="tns:FaxRecipientArray" />
+          <s:element minOccurs="0" maxOccurs="1" name="Documents" type="tns:FaxDocumentArray" />
+          <s:element minOccurs="0" maxOccurs="1" name="coverRef" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="coverText" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ApiRequestFaxjobMessage">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="broadcastRef" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sendRef" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="messageRef" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Header" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Subject" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Priority" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="busyRetry" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Sender" type="tns:FaxContact" />
+          <s:element minOccurs="1" maxOccurs="1" name="Recipient" type="tns:FaxContact" />
+          <s:element minOccurs="0" maxOccurs="1" name="Document" type="tns:FaxDocument" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ApiRequestFaxjobCountBroadcasts">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="0" name="broadcastRefs" type="tns:stringArray" />
+          <s:element minOccurs="0" maxOccurs="0" name="dateFrom" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="0" name="dateTill" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ApiRequestFaxjobCountMessages">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="0" name="broadcastRefs" type="tns:stringArray" />
+          <s:element minOccurs="0" maxOccurs="0" name="messageRefs" type="tns:stringArray" />
+          <s:element minOccurs="0" maxOccurs="0" name="dateFrom" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="0" name="dateTill" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ApiRequestFaxjobListBroadcasts">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ApiRequestFaxjobCountBroadcasts">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="pagination" type="tns:ListPagination" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ApiRequestFaxjobListMessages">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ApiRequestFaxjobCountMessages">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="pagination" type="tns:ListPagination" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="intArray">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:attribute wsdl:arrayType="s:int[]" ref="soapenc:arrayType" />
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="floatArray">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:attribute wsdl:arrayType="s:float[]" ref="soapenc:arrayType" />
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="stringArray">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:attribute wsdl:arrayType="s:string[]" ref="soapenc:arrayType" />
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ApiResponse">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="stateCode" type="tns:StateCodes" />
+          <s:element minOccurs="0" maxOccurs="1" name="stateMessage" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ApiResponseItemsCount">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ApiResponse">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="itemsCount" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ApiResponseFileDownload">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ApiResponse">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Document" nillable="true" type="tns:FaxFile" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ApiResponseDocPreview">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ApiResponseFileDownload">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="pages" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ApiResponseBalance">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ApiResponse">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="balanceValue" type="s:float" />
+              <s:element minOccurs="0" maxOccurs="1" name="balanceCurrency" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ApiResponseFaxjobSubmit">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ApiResponse">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="broadcastRef" nillable="true" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="sendRef" nillable="true" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="reportRecipients" nillable="true" type="tns:FaxReportRecipientArray" />
+              <s:element minOccurs="0" maxOccurs="1" name="reportDocuments" nillable="true" type="tns:FaxReportUploadArray" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ApiResponseFaxjobProcess">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ApiResponse">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="countResult" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="countTotal" type="s:int" />
+              <s:element minOccurs="1" name="items" nillable="true" type="tns:FaxReportProcessArray" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ApiResponseFaxjobBroadcasts">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ApiResponse">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="countResult" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="countTotal" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="items" nillable="true" type="tns:FaxReportBroadcastArray" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ApiResponseFaxjobMessages">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ApiResponse">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="countResult" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="countTotal" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="items" nillable="true" type="tns:FaxReportMessageArray" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="UsernameTokenHeaderSoapIn">
+    <wsdl:part name="UsernameTokenHeaderPart" type="tns:UsernameToken" />
+  </wsdl:message>
+  <wsdl:message name="SubmitSoapIn">
+    <wsdl:part name="submitRequest" type="tns:ApiRequestFaxjobSubmit" />
+  </wsdl:message>
+  <wsdl:message name="SubmitSoapOut">
+    <wsdl:part name="return" type="tns:ApiResponseFaxjobSubmit" />
+  </wsdl:message>
+  <wsdl:message name="SubmitMessageSoapIn">
+    <wsdl:part name="submitRequest" type="tns:ApiRequestFaxjobMessage" />
+  </wsdl:message>
+  <wsdl:message name="SubmitMessageSoapOut">
+    <wsdl:part name="return" type="tns:ApiResponseFaxjobSubmit" />
+  </wsdl:message>
+  <wsdl:message name="ResubmitSoapIn">
+    <wsdl:part name="resubmitRequest" type="tns:ApiRequestFaxjobProcess" />
+  </wsdl:message>
+  <wsdl:message name="ResubmitSoapOut">
+    <wsdl:part name="return" type="tns:ApiResponseFaxjobProcess" />
+  </wsdl:message>
+  <wsdl:message name="PauseSoapIn">
+    <wsdl:part name="pauseRequest" type="tns:ApiRequestFaxjobProcess" />
+  </wsdl:message>
+  <wsdl:message name="PauseSoapOut">
+    <wsdl:part name="return" type="tns:ApiResponseFaxjobProcess" />
+  </wsdl:message>
+  <wsdl:message name="ResumeSoapIn">
+    <wsdl:part name="resumeRequest" type="tns:ApiRequestFaxjobProcess" />
+  </wsdl:message>
+  <wsdl:message name="ResumeSoapOut">
+    <wsdl:part name="return" type="tns:ApiResponseFaxjobProcess" />
+  </wsdl:message>
+  <wsdl:message name="CancelSoapIn">
+    <wsdl:part name="cancelRequest" type="tns:ApiRequestFaxjobProcess" />
+  </wsdl:message>
+  <wsdl:message name="CancelSoapOut">
+    <wsdl:part name="return" type="tns:ApiResponseFaxjobProcess" />
+  </wsdl:message>
+  <wsdl:message name="DownloadSoapIn">
+    <wsdl:part name="messageRef" type="s:string" />
+    <wsdl:part name="isPdf" type="s:boolean" />
+  </wsdl:message>
+  <wsdl:message name="DownloadSoapOut">
+    <wsdl:part name="return" type="tns:ApiResponseDocPreview" />
+  </wsdl:message>
+  <wsdl:message name="DeleteSoapIn">
+    <wsdl:part name="messageRef" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteSoapOut">
+    <wsdl:part name="return" type="tns:ApiResponse" />
+  </wsdl:message>
+  <wsdl:message name="countBrodcastsSoapIn">
+    <wsdl:part name="listRequest" type="tns:ApiRequestFaxjobCountBroadcasts" />
+  </wsdl:message>
+  <wsdl:message name="countBrodcastsSoapOut">
+    <wsdl:part name="return" type="tns:ApiResponseItemsCount" />
+  </wsdl:message>
+  <wsdl:message name="listBrodcastsSoapIn">
+    <wsdl:part name="listRequest" type="tns:ApiRequestFaxjobListBroadcasts" />
+  </wsdl:message>
+  <wsdl:message name="listBrodcastsSoapOut">
+    <wsdl:part name="return" type="tns:ApiResponseFaxjobBroadcasts" />
+  </wsdl:message>
+  <wsdl:message name="countRecipientsSoapIn">
+    <wsdl:part name="listRequest" type="tns:ApiRequestFaxjobCountMessages" />
+  </wsdl:message>
+  <wsdl:message name="countRecipientsSoapOut">
+    <wsdl:part name="return" type="tns:ApiResponseItemsCount" />
+  </wsdl:message>
+  <wsdl:message name="listRecipientsSoapIn">
+    <wsdl:part name="listRequest" type="tns:ApiRequestFaxjobListMessages" />
+  </wsdl:message>
+  <wsdl:message name="listRecipientsSoapOut">
+    <wsdl:part name="return" type="tns:ApiResponseFaxjobMessages" />
+  </wsdl:message>
+  <wsdl:message name="checkTiffExistsSoapIn">
+    <wsdl:part name="tiffRef" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="checkTiffExistsSoapOut">
+    <wsdl:part name="return" type="tns:ApiResponse" />
+  </wsdl:message>
+  <wsdl:message name="getBalanceSoapIn" />
+  <wsdl:message name="getBalanceSoapOut">
+    <wsdl:part name="return" type="tns:ApiResponseBalance" />
+  </wsdl:message>
+  <wsdl:portType name="ApiServiceFaxoutSoap">
+    <wsdl:operation name="Submit">
+      <wsdl:input message="tns:SubmitSoapIn" />
+      <wsdl:output message="tns:SubmitSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitMessage">
+      <wsdl:input message="tns:SubmitMessageSoapIn" />
+      <wsdl:output message="tns:SubmitMessageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Resubmit">
+      <wsdl:input message="tns:ResubmitSoapIn" />
+      <wsdl:output message="tns:ResubmitSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Pause">
+      <wsdl:input message="tns:PauseSoapIn" />
+      <wsdl:output message="tns:PauseSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Resume">
+      <wsdl:input message="tns:ResumeSoapIn" />
+      <wsdl:output message="tns:ResumeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Cancel">
+      <wsdl:input message="tns:CancelSoapIn" />
+      <wsdl:output message="tns:CancelSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Download" parameterOrder="messageRef isPdf">
+      <wsdl:input message="tns:DownloadSoapIn" />
+      <wsdl:output message="tns:DownloadSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <wsdl:input message="tns:DeleteSoapIn" />
+      <wsdl:output message="tns:DeleteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="countBrodcasts">
+      <wsdl:input message="tns:countBrodcastsSoapIn" />
+      <wsdl:output message="tns:countBrodcastsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="listBrodcasts">
+      <wsdl:input message="tns:listBrodcastsSoapIn" />
+      <wsdl:output message="tns:listBrodcastsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="countRecipients">
+      <wsdl:input message="tns:countRecipientsSoapIn" />
+      <wsdl:output message="tns:countRecipientsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="listRecipients">
+      <wsdl:input message="tns:listRecipientsSoapIn" />
+      <wsdl:output message="tns:listRecipientsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="checkTiffExists">
+      <wsdl:input message="tns:checkTiffExistsSoapIn" />
+      <wsdl:output message="tns:checkTiffExistsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getBalance">
+      <wsdl:input message="tns:getBalanceSoapIn" />
+      <wsdl:output message="tns:getBalanceSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ApiServiceFaxoutSoap" type="tns:ApiServiceFaxoutSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="Submit">
+      <soap:operation soapAction="#Submit" />
+      <wsdl:input>
+        <soap:header message="tns:UsernameTokenHeaderSoapIn" part="UsernameTokenHeaderPart" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:ApiServiceFaxout" />
+        <soap:body use="encoded" namespace="urn:ApiServiceFaxout" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="submitRequest" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:ApiServiceFaxout" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="return" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitMessage">
+      <soap:operation soapAction="#SubmitMessage" />
+      <wsdl:input>
+        <soap:header message="tns:UsernameTokenHeaderSoapIn" part="UsernameTokenHeaderPart" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:ApiServiceFaxout" />
+        <soap:body use="encoded" namespace="urn:ApiServiceFaxout" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="submitRequest" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:ApiServiceFaxout" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="return" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Resubmit">
+      <soap:operation soapAction="#Resubmit" />
+      <wsdl:input>
+        <soap:header message="tns:UsernameTokenHeaderSoapIn" part="UsernameTokenHeaderPart" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:ApiServiceFaxout" />
+        <soap:body use="encoded" namespace="urn:ApiServiceFaxout" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="resubmitRequest" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:ApiServiceFaxout" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="return" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Pause">
+      <soap:operation soapAction="#Pause" />
+      <wsdl:input>
+        <soap:header message="tns:UsernameTokenHeaderSoapIn" part="UsernameTokenHeaderPart" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:ApiServiceFaxout" />
+        <soap:body use="encoded" namespace="urn:ApiServiceFaxout" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="pauseRequest" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:ApiServiceFaxout" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="return" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Resume">
+      <soap:operation soapAction="#Resume" />
+      <wsdl:input>
+        <soap:header message="tns:UsernameTokenHeaderSoapIn" part="UsernameTokenHeaderPart" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:ApiServiceFaxout" />
+        <soap:body use="encoded" namespace="urn:ApiServiceFaxout" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="resumeRequest" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:ApiServiceFaxout" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="return" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Cancel">
+      <soap:operation soapAction="#Cancel" />
+      <wsdl:input>
+        <soap:header message="tns:UsernameTokenHeaderSoapIn" part="UsernameTokenHeaderPart" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:ApiServiceFaxout" />
+        <soap:body use="encoded" namespace="urn:ApiServiceFaxout" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="cancelRequest" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:ApiServiceFaxout" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="return" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Download">
+      <soap:operation soapAction="#Download" />
+      <wsdl:input>
+        <soap:header message="tns:UsernameTokenHeaderSoapIn" part="UsernameTokenHeaderPart" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:ApiServiceFaxout" />
+        <soap:body use="encoded" namespace="urn:ApiServiceFaxout" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="messageRef isPdf" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:ApiServiceFaxout" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="return" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <soap:operation soapAction="#Delete" />
+      <wsdl:input>
+        <soap:header message="tns:UsernameTokenHeaderSoapIn" part="UsernameTokenHeaderPart" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:ApiServiceFaxout" />
+        <soap:body use="encoded" namespace="urn:ApiServiceFaxout" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="messageRef" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:ApiServiceFaxout" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="return" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="countBrodcasts">
+      <soap:operation soapAction="#countBrodcasts" />
+      <wsdl:input>
+        <soap:header message="tns:UsernameTokenHeaderSoapIn" part="UsernameTokenHeaderPart" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:ApiServiceFaxout" />
+        <soap:body use="encoded" namespace="urn:ApiServiceFaxout" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="listRequest" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:ApiServiceFaxout" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="return" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listBrodcasts">
+      <soap:operation soapAction="#listBrodcasts" />
+      <wsdl:input>
+        <soap:header message="tns:UsernameTokenHeaderSoapIn" part="UsernameTokenHeaderPart" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:ApiServiceFaxout" />
+        <soap:body use="encoded" namespace="urn:ApiServiceFaxout" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="listRequest" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:ApiServiceFaxout" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="return" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="countRecipients">
+      <soap:operation soapAction="#countRecipients" />
+      <wsdl:input>
+        <soap:header message="tns:UsernameTokenHeaderSoapIn" part="UsernameTokenHeaderPart" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:ApiServiceFaxout" />
+        <soap:body use="encoded" namespace="urn:ApiServiceFaxout" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="listRequest" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:ApiServiceFaxout" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="return" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listRecipients">
+      <soap:operation soapAction="#listRecipients" />
+      <wsdl:input>
+        <soap:header message="tns:UsernameTokenHeaderSoapIn" part="UsernameTokenHeaderPart" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:ApiServiceFaxout" />
+        <soap:body use="encoded" namespace="urn:ApiServiceFaxout" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="listRequest" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:ApiServiceFaxout" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="return" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkTiffExists">
+      <soap:operation soapAction="#checkTiffExists" />
+      <wsdl:input>
+        <soap:header message="tns:UsernameTokenHeaderSoapIn" part="UsernameTokenHeaderPart" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:ApiServiceFaxout" />
+        <soap:body use="encoded" namespace="urn:ApiServiceFaxout" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="tiffRef" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:ApiServiceFaxout" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="return" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBalance">
+      <soap:operation soapAction="#getBalance" />
+      <wsdl:input>
+        <soap:header message="tns:UsernameTokenHeaderSoapIn" part="UsernameTokenHeaderPart" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:ApiServiceFaxout" />
+        <soap:body use="encoded" namespace="urn:ApiServiceFaxout" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:ApiServiceFaxout" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="return" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ApiServiceFaxout">
+    <wsdl:port name="ApiServiceFaxoutSoap" binding="tns:ApiServiceFaxoutSoap">
+      <soap:address location="https://api.byfax.biz/soap/1.1/faxout" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
